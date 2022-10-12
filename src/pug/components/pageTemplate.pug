@@ -1,0 +1,17 @@
+include ../layouts/head
+include ../layouts/aside
+include ../components/subHeading
+
+mixin pageTemplate(pageName)
+  doctype html
+  html(lang="en")
+    +head(pageName)
+    body
+      .page-wrapper
+        +aside(pageName)
+
+        main
+          include ../layouts/nav
+          h1.page-title #{pageName === "Home" ? "Dashboard" : pageName}
+          .page-content-wrapper
+            block
