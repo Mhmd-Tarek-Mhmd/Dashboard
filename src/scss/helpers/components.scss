@@ -18,9 +18,22 @@
   justify-content: space-between;
 }
 
-.btn {
+%btn-shape {
   padding: 4px 10px;
   border-radius: 6px;
+}
+.btn {
+  display: block;
+  font-size: 14px;
+  width: fit-content;
+  color: var(--white);
+  background-color: var(--blue);
+  will-change: background-color;
+  transition: 0.3s background-color;
+  @extend %btn-shape;
+  &:hover {
+    background-color: var(--blue-alt);
+  }
 }
 
 .rect {

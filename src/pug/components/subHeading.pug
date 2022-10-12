@@ -1,0 +1,4 @@
+mixin subHeading(title, subtitle, degree="2", titleCLasses="")
+  div(class="sub-heading | grid")
+    #{`h${degree}`}(class=titleCLasses)=title
+    p(class=`cl-gray fs-${degree === "2" ? "md" : "sm"}`)=subtitle
