@@ -1,6 +1,12 @@
 @use "sass:map";
 @use "./variables";
 
+:root {
+  @each $name, $color in variables.$colors {
+    --#{$name}: #{$color};
+  }
+}
+
 html {
   scroll-behavior: smooth;
 }
