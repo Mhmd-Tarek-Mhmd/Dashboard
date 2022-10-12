@@ -1,0 +1,21 @@
+- var labels = ["dashboard", "settings", "profile", "projects", "courses", "friends", "files", "plans"];
+- var icons = ["fa-regular fa-fw fa-chart-bar", "fa-solid fa-fw fa-gear", "fa-regular fa-fw fa-user", "fa-solid fa-fw fa-diagram-project", "fa-solid fa-fw fa-graduation-cap", "fa-regular fa-fw fa-circle-user", "fa-regular fa-fw fa-file", "fa-regular fa-fw fa-credit-card"];
+
+// aside link
+mixin link(linkLabel, iconClasses, pageName)
+  - var href = linkLabel === "dashboard" ? "index" : linkLabel
+  - var activeLink = pageName === "home" ? "dashboard" : linkLabel;
+  - var isActive = pageName === activeLink;
+
+  li
+    a(class=`${isActive ? "active" : ""} link | flex align-center fs-xs` href=`${href}.html`)
+      i(class=iconClasses)
+      span.hide-mobile=linkLabel
+
+// aside
+mixin aside(pageName)
+  div(class="sidebar | bg-white relative")
+    h3.text-center.relative Brand
+    ul
+      each label, i in labels
+        +link(label, icons[i], pageName)
