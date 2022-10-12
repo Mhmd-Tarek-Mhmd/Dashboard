@@ -1,0 +1,24 @@
+@use "sass:map";
+@use "./variables";
+
+body {
+  font-weight: 300;
+  font-family: variables.$fonts;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: white;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: map.get(variables.$colors, "blue");
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: map.get(variables.$colors, "blue-alt");
+}

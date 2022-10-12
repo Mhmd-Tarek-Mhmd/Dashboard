@@ -1,0 +1,55 @@
+@use "./variables";
+
+// Colors
+@each $name, $color in variables.$colors {
+  .cl-#{$name} {
+    color: $color;
+  }
+
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+// Display
+.flex {
+  display: flex;
+}
+.grid {
+  display: grid;
+}
+.align-center {
+  align-items: center;
+}
+.space-between {
+  justify-content: space-between;
+}
+
+@media (max-width: 767px) {
+  .block-mobile {
+    display: block;
+  }
+  .hide-mobile {
+    display: none;
+  }
+}
+
+// Text
+.text-center {
+  text-align: center;
+}
+@media (max-width: 767px) {
+  .text-center-mobile {
+    text-align: center;
+  }
+}
+
+// Font
+.fw-bold {
+  font-weight: 500;
+}
+@each $name, $fontSize in variables.$fontSizes {
+  .fs-#{$name} {
+    font-size: $fontSize;
+  }
+}
