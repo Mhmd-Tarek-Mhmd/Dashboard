@@ -11,6 +11,14 @@
   }
 }
 
+// Positions
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+
 // Display
 .flex {
   display: flex;
@@ -45,8 +53,8 @@
 }
 
 // Font
-.fw-bold {
-  font-weight: 500;
+.fw-light {
+  font-weight: 300;
 }
 @each $name, $fontSize in variables.$fontSizes {
   .fs-#{$name} {
