@@ -86,6 +86,21 @@
   }
 }
 
+.row {
+  @extend .between-flex;
+  &:not(:last-of-type) {
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--light-gray);
+  }
+
+  &--gap-sm:not(:last-of-type) {
+    padding-bottom: 10px;
+  }
+  &--gap-md:not(:last-of-type) {
+    padding-bottom: 15px;
+  }
+}
+
 .page-wrapper {
   display: grid;
   min-height: 100vh;
