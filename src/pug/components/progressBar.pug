@@ -1,0 +1,4 @@
+mixin progressBar(color, width, label, isHasLabel=true)
+  div(class=`progress | bg-light-gray` role="progressbar", aria-valuenow=width aria-valuemax="100" aria-label=label)
+    div(aria-hidden="true" class=`progress__bar | bg-${color} relative` style=`width: ${width}%`)
+      span(class=`progress__label | bg-${color}` style=`--cl: var(--${color})` hidden=!isHasLabel) #{width}%
