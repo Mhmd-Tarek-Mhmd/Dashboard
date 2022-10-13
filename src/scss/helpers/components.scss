@@ -64,6 +64,11 @@
     background-color: var(--blue-alt);
   }
 }
+.badge {
+  font-size: 13px;
+  background-color: var(--light-gray);
+  @extend %btn-shape;
+}
 
 .rect {
   gap: 20px;
