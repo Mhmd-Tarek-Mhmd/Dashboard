@@ -1,0 +1,445 @@
+// Helpers
+@use "../helpers/all";
+@use "../helpers/variables";
+
+// Layouts
+@use "../layouts/aside";
+@use "../layouts/nav";
+
+/* 
+  Page Content
+*/
+
+// [1] Welcome
+#welcome {
+  overflow: hidden;
+  border-radius: 10px;
+
+  .intro {
+    padding: 20px;
+    text-align: left;
+    @media (max-width: 767px) {
+      padding-bottom: 30px;
+    }
+    img {
+      width: 200px;
+      margin-bottom: -10px;
+    }
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    padding: 2px;
+    margin-top: -32px;
+    border-radius: 50%;
+    box-shadow: 0 0 5px #ddd;
+    border: 2px solid var(--white);
+    @media (min-width: 768px) {
+      margin-left: 20px;
+    }
+  }
+
+  .body {
+    gap: 30px;
+    padding: 20px;
+    margin-block: 20px;
+    border-top: 1px solid var(--light-gray);
+    border-bottom: 1px solid var(--light-gray);
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .cta {
+    margin: 0 15px 15px auto;
+  }
+}
+
+// [2] Quick Draft
+#quick_draft {
+  & :is(input, textarea) {
+    border: none;
+    padding: 10px;
+    border-radius: 6px;
+  }
+
+  .form {
+    gap: 20px;
+    &__textarea {
+      resize: none;
+      min-height: 180px;
+    }
+    &__save {
+      justify-self: end;
+    }
+  }
+}
+
+// [3] Yearly Targets
+#yearly_targets {
+  .target {
+    column-gap: 15px;
+    grid-template-rows: 80px;
+    grid-template-columns: 80px 1fr;
+    &__icon {
+      border-radius: 2px;
+    }
+    &__details {
+      display: grid;
+      padding-bottom: 10px;
+      align-content: space-between;
+    }
+
+    &--blue {
+      .icon,
+      .progress {
+        background-color: rgba(blue, 20%);
+      }
+    }
+    &--orange {
+      .icon,
+      .progress {
+        background-color: rgba(orange, 20%);
+      }
+    }
+    &--green {
+      .icon,
+      .progress {
+        background-color: rgba(green, 20%);
+      }
+    }
+  }
+}
+
+// [4] Tickets Statistics
+#tickets_statistics {
+  .boxes {
+    gap: inherit;
+    flex-wrap: wrap;
+  }
+
+  .box {
+    gap: 10px;
+    padding: 20px;
+    border-radius: 10px;
+    width: calc(50% - 10px);
+    border: 1px solid #ccc;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+}
+
+// [5] Latest News
+#latest_news {
+  .info {
+    gap: 15px;
+    @media (min-width: 600px) {
+      grid-template-columns: 100px 1fr;
+    }
+
+    &__image {
+      width: 100%;
+      height: 100%;
+      border-radius: 6px;
+    }
+  }
+
+  @media (max-width: 599px) {
+    .row {
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .info {
+      text-align: center;
+      justify-items: center;
+    }
+  }
+}
+
+// [6] Latest Tasks
+#latest_tasks {
+  .task {
+    &--done {
+      opacity: 0.3;
+      text-decoration: line-through;
+    }
+
+    &__delete {
+      transition: color 0.3s;
+      will-change: color, cursor;
+      &:not(:disabled):hover {
+        cursor: pointer;
+        color: var(--red);
+      }
+    }
+  }
+}
+
+// [7] Top Search Items
+#top_search {
+  .table {
+    row-gap: 20px;
+    &__head,
+    &__body {
+      display: inherit;
+      row-gap: inherit;
+    }
+  }
+
+  tr {
+    display: inherit;
+    grid-template-columns: 1fr 120px;
+  }
+  .badge {
+    width: fit-content;
+    margin-inline: auto;
+  }
+}
+
+// [8] Latest Uploads
+#latest_uploads {
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+}
+
+// [9] Last Project Progress
+#last_project_progress {
+  .steps {
+    gap: 25px;
+    &::before {
+      content: "";
+      position: absolute;
+      left: 11px;
+      width: 2px;
+      height: 100%;
+      background-color: var(--blue);
+    }
+  }
+
+  .step {
+    &::before {
+      z-index: 1;
+      content: "";
+      width: 20px;
+      height: 20px;
+      display: block;
+      border-radius: 50%;
+      margin-right: 15px;
+      background-color: var(--white);
+      border: 2px solid var(--white);
+      outline: 2px solid var(--blue);
+    }
+
+    &--done::before {
+      background-color: var(--blue);
+    }
+    &--current::before {
+      will-change: background-color;
+      animation: change-color 0.8s infinite alternate;
+    }
+
+    @keyframes change-color {
+      from {
+        background-color: var(--blue);
+      }
+      to {
+        background-color: var(--white);
+      }
+    }
+  }
+
+  .decorative_img {
+    right: 0;
+    bottom: 0;
+    opacity: 0.1;
+    width: 160px;
+    position: absolute;
+  }
+}
+
+// [10] Reminders
+#reminders {
+  .reminders {
+    gap: inherit;
+  }
+
+  .reminder {
+    &--blue {
+      --cl: var(--blue);
+    }
+    &--green {
+      --cl: var(--green);
+    }
+    &--orange {
+      --cl: var(--orange);
+    }
+    &--red {
+      --cl: var(--red);
+    }
+
+    &::before {
+      content: "";
+      width: 15px;
+      height: 15px;
+      margin-right: 15px;
+      border-radius: 50%;
+      background-color: var(--cl);
+    }
+
+    & > :only-child {
+      padding-left: 15px;
+      border-left: 2px solid var(--cl);
+    }
+  }
+}
+
+// [11] Latest Post
+#latest_post {
+  .post {
+    &__head {
+      column-gap: 10px;
+    }
+
+    &__body {
+      padding: 20px;
+      margin-block: 20px;
+      border-block: 1px solid var(--light-gray);
+    }
+
+    &__foot > * {
+      column-gap: 4px;
+    }
+  }
+
+  .avatar {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+// [12] Social Media Stats
+#social_stats {
+  .state {
+    gap: 15px;
+    padding-right: 15px;
+    grid-template-rows: 55px;
+    grid-template-columns: 60px 1fr;
+    &__wrapper {
+      @media (max-width: 500px) {
+        gap: 5px;
+        flex-direction: column;
+      }
+    }
+
+    &__icon {
+      height: 100%;
+    }
+    &__cta {
+      width: 100px;
+      cursor: pointer;
+      will-change: opacity;
+      &:is(:hover, :focus-visible) {
+        opacity: 0.8;
+      }
+    }
+
+    &--twitter {
+      $cl: #1da1f2;
+      color: $cl;
+      background-color: rgba($cl, 0.2);
+      &__icon,
+      &__cta {
+        background-color: $cl;
+      }
+    }
+    &--facebook {
+      $cl: #1877f2;
+      color: $cl;
+      background-color: rgba($cl, 0.2);
+      &__icon,
+      &__cta {
+        background-color: $cl;
+      }
+    }
+    &--youtube {
+      $cl: #ff0000;
+      color: $cl;
+      background-color: rgba($cl, 0.2);
+      &__icon,
+      &__cta {
+        background-color: $cl;
+      }
+    }
+    &--linkedin {
+      $cl: #0077b5;
+      color: $cl;
+      background-color: rgba($cl, 0.2);
+      &__icon,
+      &__cta {
+        background-color: $cl;
+      }
+    }
+  }
+}
+
+// [13] Projects
+#projects {
+  grid-column: 1/-1;
+
+  .table_wrapper {
+    overflow-x: auto;
+    padding-bottom: 10px;
+  }
+
+  .table {
+    width: 100%;
+    min-width: 1000px;
+    border-spacing: 0;
+    border-style: solid;
+    border-collapse: collapse;
+    border-color: var(--light-gray);
+
+    &__cell {
+      padding: 10px;
+      .member {
+        width: 32px;
+        height: 32px;
+        padding: 2px;
+        border-radius: 50%;
+        background-color: var(--white);
+        &:not(:first-child) {
+          margin-left: -20px;
+        }
+      }
+      &:empty {
+        display: none;
+      }
+    }
+
+    &__head {
+      text-transform: capitalize;
+      background-color: var(--light-gray);
+    }
+
+    &__body {
+      .members,
+      .table__cell:first-child {
+        text-align: left;
+      }
+
+      &__row {
+        will-change: background-color;
+        transition: 0.3s background-color;
+        &:hover {
+          background-color: #faf7f7;
+        }
+      }
+    }
+  }
+}

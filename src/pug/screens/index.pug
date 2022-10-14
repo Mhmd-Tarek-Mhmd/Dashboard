@@ -1,0 +1,179 @@
+include ../components/pageTemplate
+include ../components/progressBar
+
+//- Helpers
+mixin target(color, icon, name, value, width)
+  div(class=`target target--${color} | grid`)
+    div(class=`target__icon icon | center-flex` aria-hidden="true") #[i(class=`fa-solid fa-${icon} fa-lg cl-${color}`)]
+    .target__details
+      +subHeading(name, value, "3", "base")
+      +progressBar(color, width, name)
+
+mixin box(icon, color, title, subtitle)
+  article(class="box | text-center grid justify-center")
+    i(class=`${icon} fa-rectangle-list fa-2x mb-10 | cl-${color}`)
+    +subHeading(title, subtitle, "3")
+
+mixin task(title, subtitle, isDone=false)
+  div(class=`task ${isDone ? "task--done" : ""} | row`)
+    +subHeading(title, subtitle, 3, "fs-md")
+    button(class="task__delete" aria-label="Delete" disabled=isDone) #[i(class="fa-regular fa-trash-can")]
+
+
+//- Page
++pageTemplate("Home")
+  //- [1] Welcome
+  section(id="welcome" class="bg-white text-center-mobile")
+    .intro.bg-light-gray.flex.space-between
+      +subHeading("Welcome", "Username")
+      img(aria-hidden="true" class="hide-mobile" src="assets/images/welcome.png" alt="")
+    
+    img(class="avatar" src="assets/images/user.png" alt="Avatar of Username")
+    div(class="body | text-center grid")
+      +subHeading("Full Name", "Developer", "3", "base")
+      +subHeading("80", "Projects", "3", "base")
+      +subHeading("$8500", "Earned", "3", "base")
+    a(class="cta | btn" href="profile.html") Profile
+
+  //- [2] Quick Draft
+  section(id="quick_draft" class="rect")
+    +subHeading("Quick Draft", "Write a draft for your ideas")
+    form(class="form | grid" onsubmit="event.preventDefault()")
+      input(class="form__input | bg-light-gray" type="text" placeholder="Title" title="Title")
+      textarea(class="form__textarea | bg-light-gray" placeholder="Your thought...")
+      button(class="form__save | btn" type="submit") Save
+
+  //- [3] Yearly Targets
+  section(id="yearly_targets" class="rect")
+    +subHeading("Yearly Targets", "Targets of the year")
+    +target("blue", "dollar-sign", "Money", "$20.000", "80")
+    +target("orange", "code", "Projects", "24", "55")
+    +target("green", "user", "Team", "12", "75")
+          
+  //- [4] Tickets Statistics
+  section(id="tickets_statistics" class="rect")
+    +subHeading("Tickets Statistics", "Everything about support tickets")
+    .boxes.flex
+      +box("fa-regular fa-rectangle-list", "orange", 2500, "Total")
+      +box("fa-solid fa-spinner", "blue", 500, "Pending")
+      +box("fa-regular fa-circle-check", "green", 1900, "Closed")
+      +box("fa-regular fa-rectangle-xmark", "red", 100, "Deleted")
+
+  //- [5] Latest News
+  section(id="latest_news" class="rect")
+    - var news = [{"title": "Created SASS Section", "subtitle": "New SASS Examples & Tutorials", "timestamp": "3 Days Ago"}, {"title": "Changed The Design", "subtitle": "New website designs", "timestamp": "5 Days Ago"}, {"title": "Team Increased", "subtitle": "3 new developers joined the team", "timestamp": "7 Days Ago"}, {"title": "Added Payment Gateway", "subtitle": "Many new payment gateways added", "timestamp": "9 Days ago"}];
+
+    h2.heading Latest News
+    each item, i in news
+      .row
+        .info.grid.align-center
+          img(aria-hidden="true" class="info__image" src=`assets/images/news/${i+1}.png` alt="")
+          +subHeading(item.title, item.subtitle, 3, "fs-md")
+        .badge=item.timestamp
+
+  //- [6] Latest Tasks
+  section(id="latest_tasks" class="rect")
+    h2.heading Latest Tasks
+    +task("Record one new video", "Recording Python project")
+    +task("Write article", "Writing Low Level vs. High Level Languages")
+    +task("Finish project", "Publishing academy programming project")
+    +task("Attend the meeting", "Attending the project business analysis meeting", true)
+    +task("Finish lesson", "Teaching flex box")
+
+  //- [7] Top Search Items
+  section(id="top_search" class="rect")
+    h2.heading Top Search Items
+    table(class="table | grid")
+      thead(class="table__head | cl-gray")
+        tr #[td Keyword] #[td.text-center Search Count]
+      tbody(class="table__body | fs-md")
+        tr #[td Programming] #[td #[.badge 220]]
+        tr #[td JavaScript] #[td #[.badge 180]]
+        tr #[td PHP] #[td #[.badge 160]]
+        tr #[td Code] #[td #[.badge 145]]
+        tr #[td Design] #[td #[.badge 110]]
+        tr #[td Logic] #[td #[.badge 95]]
+
+  //- [8] Latest Uploads
+  section(id="latest_uploads" class="rect")
+    - var uploads = [{ "type": "pdf", "size": "2.9" }, { "type": "avi", "size": "4.4" }, { "type": "psd", "size": "14.5" }, { "type": "zip", "size": "8.3" }, { "type": "dll", "size": "4.7" }, { "type": "eps", "size": "8.9" }];
+
+    h2.heading Latest Uploads
+    each upload in uploads
+      article.row
+        .flex
+          img(aria-hidden="true", src=`assets/images/icons/${upload.type}.svg` alt="")
+          +subHeading(`my-${upload.type}-file.${upload.type}`, "lorem", 3, "fs-md")
+        .badge #{upload.size}mb
+
+  //- [9] Last Project Progress
+  section(id="last_project_progress" class="rect relative")
+    img(aria-hidden="true", class="decorative_img | hide-mobile" src="assets/images/project.png" alt="")
+    h2.heading Last Project Progress
+    ul.steps.relative.grid.fs-md
+      li.step.step--done.flex.align-center Got The Project
+      li.step.step--done.flex.align-center Started The Project
+      li.step.step--done.flex.align-center The Project About To Finish
+      li.step.step--current.flex.align-center Test The Project
+      li.step.flex.align-center Finish The Project & Get Money
+
+  //- [10] Reminders
+  section(id="reminders" class="rect")
+    h2.heading Reminders
+    ul.reminders.grid
+      li.reminder.reminder--blue.flex.align-center #[+subHeading("Check My Tasks List", "28/09/2022 - 12:00am", 3, "fs-md")]
+      li.reminder.reminder--green.flex.align-center #[+subHeading("Check My Projects", "26/10/2022 - 12:00am", 3, "fs-md")]
+      li.reminder.reminder--orange.flex.align-center #[+subHeading("Call All My Clients", "05/11/2022 - 12:00am", 3, "fs-md")]
+      li.reminder.reminder--red.flex.align-center #[+subHeading("Finish The Development Workshop", "20/12/2022 - 12:00am", 3, "fs-md")]
+
+  //- [11] Latest Post
+  section(id="latest_post" class="rect")
+    h2.heading Latest Post
+    article(class="post")
+      .post__head.flex
+        img(class="avatar" src="assets/images/user.png" alt="avatar of username")
+        +subHeading("Full Name", "3 hours ago", 3, "fs-md")
+      .post__body
+        blockquote.fw-light You can fool all of the people some of the time, and some of the people all of the time, but you can't fool all of the people all of the time.
+      .post__foot.between-flex.cl-gray
+        .flex.align-center(aria-label="1.8K like") #[i(aria-hidden="true" class="fa-regular fa-heart")] #[span 1.8K]
+        .flex.align-center(aria-label="500 comment") #[i(aria-hidden="true" class="fa-regular fa-comments")] #[span 500]
+
+  //- [12] Social Media Stats
+  section(id="social_stats" class="rect")
+    - var stats = [{ "name": "twitter", "val": "90K Followers", "badge": "Follow" },{ "name": "facebook", "val": "2M Like", "badge": "Like" },{ "name": "youtube", "val": "1M Subs", "badge": "Subscribe" },{ "name": "linkedin", "val": "70K Followers", "badge": "Follow" }]
+
+    h2.heading Social Media Stats
+    each state in stats
+      article(class=`state state--${state.name} | grid align-center`)
+        i(class=`state__icon state--${state.name}__icon fa-brands fa-${state.name} fa-2x cl-white center-flex`)
+        .state__wrapper.between-flex
+          p.fs-sm=state.val
+          button(class=`state__cta state--${state.name}__cta | badge cl-white`)=state.badge
+
+  //- [13] Projects
+  section(id="projects" class="rect")
+    - var projects = [{"name": "Ministry Wikipedia", "delivery date": "10 May 2022", "client": "Ministry", "price": "$5300", "team": [1, 2, 3, 5], "status": ["Pending", "orange"]},{"name": "Elzero Shop", "delivery date": "12 Oct 2021", "client": "Elzero Company", "price": "$1500", "team": [1, 2, 5], "status": ["In progress", "blue"]},{"name": "Bouba App", "delivery date": "05 Sep 2021", "client": "Bouba", "price": "$800", "team": [2, 3], "status": ["Completed", "green"]},{"name": "Mahmoud Website", "delivery date": "22 May 2021", "client": "Mahmoud", "price": "$600", "team": [1, 2], "status": ["Completed", "green"]},{"name": "Mahmoud Website", "delivery date": "22 May 2021", "client": "Mahmoud", "price": "$600", "team": [1, 2], "status": ["Completed", "green"]},{"name": "Sayed Website", "delivery date": "24 May 2021", "client": "Sayed", "price": "$300", "team": [1, 3], "status": ["Rejected", "red"]},{"name": "Arena Application", "delivery date": "01 Mar 2021", "client": "Arena Company", "price": "$2600", "team": [1, 2, 3, 4], "status": ["Completed", "green"]}];
+
+    h2.heading Projects
+    .table_wrapper
+      table(class="table | text-center" border=1)
+        thead.table__head
+          tr.table__head__row
+            each project, i in projects
+              td.table__cell=Object.keys(project)[i]
+
+        tbody.table__body.fs-sm
+          each project in projects
+            tr.table__body__row
+              each value, i in Object.values(project)
+                td(class=`table__cell ${i === 4 ? "members" : ""}`, aria-label=`${i === 4 ? "Team members names" : ""}`)
+                  case i
+                    when 4
+                      each num in value 
+                        img(class="member" src=`assets/images/team/${num}.png` alt="")
+                    when 5
+                      span(class=`badge cl-white bg-${value[1]}`)=value[0]
+                    default
+                      =value
+
