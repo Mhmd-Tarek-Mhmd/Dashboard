@@ -85,7 +85,8 @@
     border-radius: 10px;
   }
 
-  .heading {
+  & > .heading,
+  & > .sub-heading {
     margin-bottom: 10px;
   }
 }
