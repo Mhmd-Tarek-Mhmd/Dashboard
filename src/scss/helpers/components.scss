@@ -110,9 +110,7 @@
   min-height: 100vh;
   background-color: #f1f5f9;
   grid-template-columns: 200px 1fr;
-}
-@media (max-width: 767px) {
-  .page-wrapper {
+  @media (max-width: 767px) {
     grid-template-columns: 60px 1fr;
   }
 }
@@ -147,6 +145,6 @@
   @media (max-width: 767px) {
     gap: 10px;
     margin-inline: 10px;
-    grid-template-columns: minmax(200px, 1fr);
+    grid-template-columns: 100%;
   }
 }
