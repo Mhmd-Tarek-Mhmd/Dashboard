@@ -1,0 +1,12 @@
+mixin switch(isOn=true, cb)
+  button(
+    class="switch | flex align-center" type="switch",
+    aria-checked=String(isOn),
+    aria-label=`Switch ${isOn ? "off" : "on"}`,
+    onclick=`
+      this.ariaChecked = this.ariaChecked === "true" ? "false" : "true";
+      this.ariaLabel = this.ariaChecked ? 'Switch off' : 'Switch on';
+      ${cb ? cb + ";" : ""}
+  `)
+    .switch__icon.fa-solid.center-flex(aria-hidden="true")
+        

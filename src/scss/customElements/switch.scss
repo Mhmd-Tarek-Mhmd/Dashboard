@@ -1,0 +1,35 @@
+.switch {
+  width: 78px;
+  height: 32px;
+  padding: 6px;
+  cursor: pointer;
+  border-radius: 16px;
+  will-change: background-color;
+  transition: background-color 0.3s;
+  background-color: var(--light-gray);
+
+  :only-child {
+    width: 24px;
+    height: 24px;
+    color: #aaa;
+    border-radius: 50%;
+    transition: transform 0.3s;
+    will-change: color, transform;
+    background-color: var(--white);
+    &::before {
+      content: "\f00d";
+      will-change: content;
+    }
+  }
+
+  &[aria-checked="true"] {
+    background-color: var(--blue);
+    :only-child {
+      color: var(--blue);
+      transform: translateX(42px);
+      &::before {
+        content: "\f00c";
+      }
+    }
+  }
+}
