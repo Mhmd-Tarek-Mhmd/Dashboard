@@ -1,0 +1,52 @@
+// Helpers
+@use "../helpers/all";
+
+// Layouts
+@use "../layouts/aside";
+@use "../layouts/nav";
+
+/* 
+  Page Content
+*/
+
+.page-content-wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.course {
+  overflow: hidden;
+  border-radius: 6px;
+  grid-template-columns: 1fr;
+  grid-template-rows: 250px 130px 45px;
+  &__top {
+    &__cover {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__instructor {
+    top: 20px;
+    left: 20px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+  }
+
+  &__center {
+    padding: 20px;
+  }
+
+  &__bottom {
+    padding: 15px;
+    border-top: 1px solid var(--light-gray);
+
+    .badge {
+      left: 50%;
+      top: -12px;
+      transform: translateX(-50%);
+    }
+  }
+}

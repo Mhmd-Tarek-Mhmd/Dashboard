@@ -1,0 +1,27 @@
+include ../components/pageTemplate
+
+//- Helpers
+mixin course(coverSrc, avatarSrc, title, subtitle, buyers, price)
+  article(class="course | grid bg-white")
+    .course__top.relative
+      img(aria-hidden="true" class="course__top__cover" src=`assets/images/course/${coverSrc}.jpg` alt="")
+      img(class="course__instructor | absolute" src=`assets/images/team/${avatarSrc}.png` alt="Instructor Full Name")
+    .course__center
+      +subHeading(title, subtitle, 3)
+    .course__bottom.between-flex.relative.fs-sm
+      .badge.bg-blue.cl-white.absolute Course Info
+      .buyers.cl-gray(aria-label=`${buyers} buyers`) #[i(aria-hidden="true", class="fa-regular fa-user")] #[span(aria-hidden="true")=buyers]
+      .price.cl-gray(aria-label=`${price} dollar`) #[i(aria-hidden="true" class="fa-solid fa-dollar-sign")] #[span(aria-hidden="true")=price]
+
+//- Page
++pageTemplate("Courses")
+  +course(1, 1, "Mastering Web Design", "Master the art of web designing and mocking, prototyping and creating web design architecture.", 950, 165)
+  +course(2, 2, "Data Structure And Algorithms", "Master the art of data structure and famous algorithms.", 1150, 210)
+  +course(3, 3, "Responsive Web Design", "Mastering responsive web design, media queries, and learn everything about breakpoints.",  650, 90)
+  +course(4, 4, "Mastering Python", "Mastering Python to prepare for Data Science & AI, and automating things in your life.", 950, 250)
+  +course(5, 5, "PHP Examples", "PHP tutorials & examples, and practice on web application and connecting with databases.", 850, 150)
+  +course(2, 2, "Data Structure And Algorithms", "Master the art of data structure and famous algorithms.", 1150, 210)
+  +course(3, 3, "Responsive Web Design", "Mastering responsive web design, media queries, and learn everything about breakpoints.",  650, 90)
+  +course(1, 1, "Mastering Web Design", "Master the art of web designing and mocking, prototyping and creating web design architecture.", 950, 165)
+  +course(5, 5, "PHP Examples", "PHP tutorials & examples, and practice on web application and connecting with databases.", 850, 150)
+  +course(4, 4, "Mastering Python", "Mastering Python to prepare for Data Science & AI, and automating things in your life.", 950, 250)
