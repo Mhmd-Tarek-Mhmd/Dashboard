@@ -1,0 +1,94 @@
+include ../components/pageTemplate
+include ../components/progressBar
+include ../components/switch
+
+//- Helpers
+mixin infoSlot(name, value)
+  .info_slot
+    span.cl-gray.fs-sm #{name}: 
+    span.fs-xs=value
+
+mixin imageBox(imgSrcNum, title, subtitle)
+  .image_box.flex.align-center
+    img(src=`assets/images/activity/${imgSrcNum}.png`)
+    +subHeading(title, subtitle, 3, "fs-md")
+
+//- Page
++pageTemplate("Profile")
+  //- [1] Overview
+  section(id="overview" class="rect")
+    .wrapper.flex
+      .user_info.grid.text-center
+        img(class="user_info__avatar" src="assets/images/user.png" alt="Avatar of username")
+        +subHeading("Full Name", "Level 20", 2, "fs-xl")
+        +progressBar("blue", 70, "", false)
+        .user_info__rating.center-flex.cl-orange
+          i(class="fa-solid fa-star fs-sm")
+          i(class="fa-solid fa-star fs-sm")
+          i(class="fa-solid fa-star fs-sm")
+          i(class="fa-solid fa-star fs-sm")
+          i(class="fa-regular fa-star fs-sm")
+        <p class="cl-gray fs-xs">550 Rating</p>
+
+      .other_info.grid
+        .row
+          .row__wrapper
+            h3.cl-gray.fs-sm General Information
+            .row__slots.grid
+              +infoSlot("Full Name", "Full Name")
+              +infoSlot("Gender", "Male")
+              +infoSlot("Country", "Egypt")
+            +switch
+
+        .row
+          .row__wrapper
+            h3.cl-gray.fs-sm Personal Information
+            .row__slots.grid
+              +infoSlot("Full Email", "full.name@email.com")
+              +infoSlot("Phone", "xxxxxxxx")
+              +infoSlot("Date of Birth", "00/00/0000")
+            +switch(false)
+
+        .row
+          .row__wrapper
+            h3.cl-gray.fs-sm Job Information
+            .row__slots.grid
+              +infoSlot("Title", "Frontend Developer")
+              +infoSlot("Programming Language", "javaScript")
+              +infoSlot("Years of Experience", "+2")
+            +switch
+
+        .row
+          .row__wrapper
+            h3.cl-gray.fs-sm Billing Information
+            .row__slots.grid
+              +infoSlot("Payment Method", "Paypal")
+              +infoSlot("Email", "email@website.com")
+              +infoSlot("Subscription", "Monthly")
+            +switch(false)
+
+  .sections_wrapper.flex
+
+    //- [2] Skills
+    section(id="skills" class="rect")
+      +subHeading("Skills", "Complete skills list")
+      .row #[.badge HTML] #[.badge Pug] #[.badge HAML]
+      .row #[.badge CSS] #[.badge SASS] #[.badge Stylus]
+      .row #[.badge javaScript] #[.badge typeScript]
+      .row #[.badge React] #[.badge jQuery]
+
+    //- [3] Latest Activities
+    section(id="latest_activities" class="rect")
+      +subHeading("Latest Activities", "Latest activities done by you")
+      .row
+        +imageBox(1, "Store", "Mastering Python Course")
+        +subHeading("18:10", "Yesterday", 4, "fs-md base text-center")
+      .row
+        +imageBox(2, "Academy", "PHP Certificate")
+        +subHeading("16:13", "Yesterday", 4, "fs-md base text-center")
+      .row
+        +imageBox(3, "Badges", "Unlocked 10 Skills badge")
+        +subHeading("13:10", "Yesterday", 4, "fs-md base text-center")
+      .row
+        +imageBox(1, "Store", "Typescript Course")
+        +subHeading("03:10", "3 days ago", 4, "fs-md base text-center")

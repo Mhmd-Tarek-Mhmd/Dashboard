@@ -1,0 +1,102 @@
+// Helpers
+@use "../helpers/all";
+
+// Components
+@use "../components/progressBar";
+@use "../components/switch";
+
+// Layouts
+@use "../layouts/aside";
+@use "../layouts/nav";
+
+/* 
+  Page Content
+*/
+
+.sections_wrapper {
+  gap: inherit;
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
+}
+
+// [1] Overview
+#overview {
+  padding: 0;
+  grid-column: 1/-1;
+  .wrapper {
+    @media (max-width: 767px) {
+      gap: 20px;
+      flex-direction: column;
+    }
+  }
+
+  .user_info {
+    gap: 8px;
+    width: 250px;
+    align-self: center;
+    justify-items: center;
+    @media (min-width: 768px) {
+      border-right: 1px solid var(--light-gray);
+    }
+    &__avatar {
+      width: 120px;
+      height: 120px;
+    }
+    &__rating {
+      margin-top: 4px;
+    }
+    .progress {
+      width: 50%;
+    }
+  }
+
+  .other_info {
+    flex: 1;
+    width: 100%;
+    .row {
+      padding: 20px;
+      flex-wrap: wrap;
+      &:hover {
+        background-color: #f9f9f9;
+      }
+
+      &__wrapper {
+        width: 100%;
+      }
+      &__slots {
+        gap: 5px;
+        margin-block: 10px 8px;
+        @media (min-width: 1100px) {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+    }
+  }
+
+  .switch {
+    margin-left: -11px;
+    transform: scale(0.65);
+  }
+}
+
+// [2] Skills
+#skills {
+  @media (min-width: 768px) {
+    max-width: 250px;
+  }
+  .row {
+    column-gap: 10px;
+    justify-content: flex-start;
+  }
+}
+
+// [3] Latest Activities
+#latest_activities {
+  flex: 1;
+  img {
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
+  }
+}
