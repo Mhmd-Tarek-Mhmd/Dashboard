@@ -1,0 +1,46 @@
+.radio {
+  cursor: pointer;
+  column-gap: 10px;
+  &__state {
+    appearance: none;
+  }
+  &__block {
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    border-radius: 6px;
+    place-items: center;
+    border: 1px solid var(--gray);
+    will-change: color, border-color;
+  }
+
+  &__circle {
+    width: 18px;
+    height: 18px;
+    padding: 2px;
+    border-radius: 50%;
+    will-change: border-color;
+    border: 2px solid var(--gray);
+    &::before {
+      content: "";
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      will-change: transform;
+      transition: transform 0.3s;
+      background-color: var(--blue);
+      transform: scale(0) rotate(360deg);
+    }
+  }
+
+  &__state:checked + &__circle {
+    border-color: var(--blue);
+    &::before {
+      transform: scale(1);
+    }
+  }
+  &__state:checked ~ &__block {
+    color: var(--blue);
+    border-color: var(--blue);
+  }
+}

@@ -1,0 +1,9 @@
+mixin radioButton(name, label, isChecked=false)
+  label.radio.flex.align-center
+    input(class="radio__state" type="radio" name=name checked=isChecked hidden)
+    if block
+      .radio__block.grid
+          block
+    else
+      .radio__circle.center-flex(aria-hidden="true")
+      span.fs-md=label
