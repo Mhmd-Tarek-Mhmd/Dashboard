@@ -1,0 +1,32 @@
+.checkbox {
+  cursor: pointer;
+  column-gap: 10px;
+  &__state {
+    appearance: none;
+  }
+
+  &__box {
+    width: 18px;
+    height: 18px;
+    overflow: hidden;
+    border-radius: 4px;
+    will-change: border;
+    border: 2px solid var(--gray);
+  }
+  &__icon {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    will-change: transform;
+    transition: transform 0.3s;
+    background-color: var(--blue);
+    transform: scale(0) rotate(360deg);
+  }
+
+  &__state:checked + &__box {
+    border: none;
+    :only-child {
+      transform: scale(1);
+    }
+  }
+}

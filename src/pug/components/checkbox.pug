@@ -1,0 +1,5 @@
+mixin checkbox(label, isChecked=true)
+  label.checkbox.flex.align-center
+    input(class="checkbox__state" type="checkbox" checked=isChecked hidden)
+    .checkbox__box.relative(aria-hidden="true") #[i.checkbox__icon.fa-solid.fa-check.cl-white.fs-xs.center-flex]
+    span.fs-md=label
