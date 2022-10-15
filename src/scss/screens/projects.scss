@@ -1,0 +1,46 @@
+// Helpers
+@use "../helpers/all";
+
+// Components
+@use "../components/progressBar";
+
+// Layouts
+@use "../layouts/aside";
+@use "../layouts/nav";
+
+/* 
+  Page Content
+*/
+
+.project {
+  .team {
+    margin-top: 20px;
+  }
+
+  .member {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    will-change: z-index;
+    border: 2px solid white;
+    &:not(:first-child) {
+      transform: translateX(calc(-15px * var(--i)));
+    }
+    &:hover {
+      z-index: 3;
+    }
+  }
+
+  .badges {
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-block: 20px;
+    justify-content: flex-end;
+    border-block: 1px solid var(--light-gray);
+  }
+
+  .progress {
+    width: 30%;
+    height: 8px;
+  }
+}
