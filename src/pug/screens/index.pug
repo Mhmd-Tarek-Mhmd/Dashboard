@@ -102,7 +102,7 @@ mixin task(title, subtitle, isDone=false)
     each upload in uploads
       article.row
         .flex
-          img(aria-hidden="true", src=`assets/images/icons/${upload.type}.svg` alt="")
+          img(aria-hidden="true", src=`assets/images/files/${upload.type}.svg` alt="")
           +subHeading(`my-${upload.type}-file.${upload.type}`, "lorem", 3, "fs-md")
         .badge #{upload.size}mb
 

@@ -11,7 +11,7 @@ mixin statistic(icon, color, title, subtitle)
 mixin file(file)
   article.file.rect.relative
     button.file__download.cl-gray.absolute(aria-label="Download") #[i(aria-hidden="true" class="fa-solid fa-download absolute")]
-    img(aria-hidden="true" class="file__icon" src=`assets/images/icons/${file}.svg` alt="" width="64" height="64")
+    img(aria-hidden="true" class="file__icon" src=`assets/images/files/${file}.svg` alt="" width="64" height="64")
     h3.file__name.fs-sm.text-center my-#{file}.png
     span.file__uploader.fs-xs.cl-gray Uploader Name
     .file__foot.cl-gray.fs-xs.between-flex
