@@ -1,0 +1,37 @@
+include ../components/pageTemplate
+
+//- Helpers
+mixin friend(avatarSrc, name, jobTitle, isVip)
+  article(class="friend | rect relative")
+    .top.row.text-center
+      .top__controls.flex.cl-gray.absolute
+        button.bg-light-gray.cl-gray.fs-xs #[i(aria-hidden="true" class="fa-solid fa-phone")]
+        button.bg-light-gray.cl-gray.fs-xs #[i(aria-hidden="true" class="fa-solid fa-envelope")]
+      .friend__info
+        img(class="friend__avatar" src=`assets/images/friend/${avatarSrc}.jpg` alt=`Avatar of ${name}` width="100" height="100")
+        +subHeading(name, jobTitle)
+    .middle.row
+      .middle__slots.grid
+        .slot.flex #[i(aria-hidden="true" class="fa-regular fa-face-smile fa-fw")] #[span.fs-xs 00 Friends]
+        .slot.flex #[i(aria-hidden="true" class="fa-solid fa-code-commit fa-fw")] #[span.fs-xs 00 Projects]
+        .slot.flex #[i(aria-hidden="true" class="fa-regular fa-newspaper fa-fw")] #[span.fs-xs 00 Articles]
+      if isVip
+        strong(class="friend--vip cl-orange") VIP
+    .bottom.row
+      span.cl-gray.fs-xs Joined 00/00/0000
+      .bottom__controls.flex 
+        button.badge.bg-blue.cl-white Profile
+        button.badge.bg-red.cl-white Remove
+
+//- Page
++pageTemplate("Friends")
+  +friend(1, "Full Name", "Job Title", true)
+  +friend(2, "Full Name", "Job Title")
+  +friend(3, "Full Name", "Job Title", true)
+  +friend(4, "Full Name", "Job Title")
+  +friend(5, "Full Name", "Job Title", true)
+  +friend(2, "Full Name", "Job Title")
+  +friend(1, "Full Name", "Job Title", true)
+  +friend(4, "Full Name", "Job Title")
+  +friend(5, "Full Name", "Job Title", true)
+  +friend(3, "Full Name", "Job Title")

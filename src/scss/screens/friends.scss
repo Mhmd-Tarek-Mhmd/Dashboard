@@ -1,0 +1,69 @@
+// Helpers
+@use "../helpers/all";
+
+// Layouts
+@use "../layouts/aside";
+@use "../layouts/nav";
+
+/* 
+  Page Content
+*/
+
+.page-content-wrapper {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.friend {
+  &__avatar {
+    border-radius: 50%;
+    margin-bottom: 15px;
+  }
+  &--vip {
+    opacity: 0.3;
+    font-size: 40px;
+  }
+
+  .top {
+    justify-content: center;
+    &__controls {
+      gap: 5px;
+      top: 15px;
+      left: 15px;
+      & > * {
+        padding: 10px;
+        cursor: pointer;
+        border-radius: 50%;
+        transition: background-color 0.3s;
+        will-change: color, background-color;
+        &:hover {
+          color: var(--white) !important;
+          background-color: var(--blue) !important;
+        }
+      }
+    }
+  }
+
+  .middle {
+    gap: 15px;
+    &__slots {
+      gap: 10px;
+      .slot {
+        gap: 5px;
+      }
+    }
+  }
+
+  .bottom {
+    gap: 10px;
+    &__controls {
+      gap: 4px;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .middle,
+    .bottom {
+      flex-direction: column;
+    }
+  }
+}
