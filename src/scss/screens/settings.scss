@@ -1,0 +1,114 @@
+// Helpers
+@use "../helpers/all";
+
+// Components
+@use "../components/switch";
+@use "../components/checkbox";
+@use "../components/radioButton";
+
+// Layouts
+@use "../layouts/aside";
+@use "../layouts/nav";
+
+/* 
+  Page Content
+*/
+
+input,
+textarea {
+  width: 100%;
+  resize: none;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--light-gray);
+  &:disabled {
+    cursor: no-drop;
+    background-color: #f0f4f8;
+  }
+}
+
+// [1] Site Control
+#site_control {
+  @media (max-width: 500px) {
+    .control_wrapper {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+      gap: 15px;
+    }
+  }
+
+  .form {
+    row-gap: 10px;
+    grid-template-rows: 150px 1fr;
+
+    &__submit {
+      justify-self: end;
+      &:disabled {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+// [2] General Info
+#general_info {
+  .info {
+    gap: 15px;
+    border: none;
+
+    &__label {
+      gap: 10px;
+    }
+
+    &__controller {
+      margin-left: auto;
+    }
+  }
+}
+
+// [3] Security Info
+#security_info {
+}
+
+// [4] Social Info
+#social_info {
+  .box {
+    overflow: hidden;
+    border-radius: 6px;
+    color: var(--gray);
+    grid-template-rows: 40px;
+    grid-template-columns: 40px 1fr;
+    background-color: var(--light-gray);
+    &:focus-within {
+      color: initial;
+    }
+
+    &_icon {
+      will-change: color;
+      transition: color 0.3s;
+    }
+  }
+
+  input {
+    outline: none;
+    border-radius: 0;
+  }
+}
+
+// [5] Widgets Control
+#widgets_control {
+}
+
+// [6] Backup Manager
+#backup_manager {
+  .location {
+    gap: inherit;
+    padding-top: 20px;
+    grid-auto-rows: 70px;
+    border-top: 1px solid var(--light-gray);
+    @media (min-width: 500px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+}

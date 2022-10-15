@@ -1,0 +1,91 @@
+include ../components/pageTemplate
+include ../components/switch
+include ../components/checkbox
+include ../components/radioButton
+
+//- Page
++pageTemplate("Settings")
+  //- [1] Site Control
+  section(id="site_control" class="rect")
+    +subHeading("Site Control", "Control the website if there is maintenance")
+    .control_wrapper.between-flex
+      +subHeading("Website Control", "Open/Close website & type the reason", 3, "base")
+      +switch(true, `[...this.parentElement.nextElementSibling.children].forEach(ele => ele.toggleAttribute("disabled"))`)
+    form(onsubmit="event.preventDefault()" class="form | grid")
+      textarea(placeholder="Close message content" disabled)
+      button.form__submit.btn(disabled) Send
+
+  //- [2] General Info
+  section(id="general_info" class="rect")
+    +subHeading("General Info", "General information about your account")
+    fieldset(class="info | grid" disabled) 
+      label.info__label.grid
+        span.cl-gray.fs-md First Name
+        input(type="text" value="First Name")
+      label.info__label.grid
+        span.cl-gray.fs-md Last Name
+        input(type="text" value="Last Name")
+      label.info__label.grid
+        span.cl-gray.fs-md Email
+        input(type="text" value="Email")
+
+    button.info__controller.btn(onclick=`
+      this.previousElementSibling.toggleAttribute('disabled');
+      this.innerHTML = this.previousElementSibling.hasAttribute('disabled') ? "Edit" : "Save";
+    `) Edit
+
+  //- [3] Security Info
+  section(id="security_info" class="rect")
+    +subHeading("Security Info", "Security information about your account")
+    .row
+      +subHeading("Password", "Last change on 25/10/2021", 3, "base")
+      button.btn Change
+    .row
+      +subHeading("Two-Factor Authentication", "Enable/Disable", 3, "base")
+      +switch
+    .row
+      +subHeading("Devices", "Check the logged devices", 3, "base")
+      button.badge Check
+
+  //- [4] Social Info
+  section(id="social_info" class="rect")
+    +subHeading("Social Info", "Social Media information")
+    label.box.grid
+      i(aria-hidden="true" class="box_icon | fa-brands fa-twitter center-flex")
+      input(type="text" placeholder="Twitter Username")
+    label.box.grid
+      i(aria-hidden="true" class="box_icon | fa-brands fa-facebook center-flex")
+      input(type="text" placeholder="Facebook Username")
+    label.box.grid
+      i(aria-hidden="true" class="box_icon | fa-brands fa-linkedin center-flex")
+      input(type="text" placeholder="Linkedin Username")
+    label.box.grid
+      i(aria-hidden="true" class="box_icon | fa-brands fa-youtube center-flex")
+      input(type="text" placeholder="Youtube Username")
+
+  //- [5] Widgets Control
+  section(id="widgets_control" class="rect")
+    +subHeading("Widgets Control", "Show/Hide widgets")
+    +checkbox("Quick Draft")
+    +checkbox("Yearly Targets")
+    +checkbox("Tickets Statistics")
+    +checkbox("Latest News")
+    +checkbox("Latest Tasks", false)
+    +checkbox("Top Search")
+
+  //- [6] Backup Manager
+  section(id="backup_manager" class="rect")
+    +subHeading("Backup Manager", "Control backup time & location")
+    +radioButton("time", "Daily", true)
+    +radioButton("time", "Weekly")
+    +radioButton("time", "Monthly")
+    .location.grid.text-center
+      +radioButton("location", "")
+        i(aria-hidden="true" class="fa-solid fa-server d-block mb-10")
+        div Megaman
+      +radioButton("location", "", true)
+        i(aria-hidden="true" class="fa-solid fa-server d-block mb-10")
+        div Zero
+      +radioButton("location", "")
+        i(aria-hidden="true" class="fa-solid fa-server d-block mb-10")
+        div Sigma
