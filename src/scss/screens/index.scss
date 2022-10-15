@@ -1,6 +1,8 @@
 // Helpers
 @use "../helpers/all";
-@use "../helpers/variables";
+
+// Components
+@use "../components/progressBar";
 
 // Layouts
 @use "../layouts/aside";
