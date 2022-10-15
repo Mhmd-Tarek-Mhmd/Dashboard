@@ -3,9 +3,9 @@
 
 //- aside link
 mixin link(linkLabel, iconClasses, pageName)
-  - var href = linkLabel === "dashboard" ? "index" : linkLabel
-  - var activeLink = pageName === "home" ? "dashboard" : linkLabel;
-  - var isActive = pageName === activeLink;
+  - var href = linkLabel === "dashboard" ? "index" : linkLabel;
+  - var activeLink = pageName === "home" ? "dashboard" : pageName;
+  - var isActive = activeLink === linkLabel;
 
   li
     a(class=`${isActive ? "active" : ""} link | flex align-center fs-xs` href=`${href}.html`)
@@ -18,4 +18,4 @@ mixin aside(pageName)
     h3.text-center.relative Brand
     ul
       each label, i in labels
-        +link(label, icons[i], pageName)
+        +link(label, icons[i], pageName.toLowerCase())
