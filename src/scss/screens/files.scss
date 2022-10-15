@@ -1,0 +1,99 @@
+// Helpers
+@use "../helpers/all";
+
+// Layouts
+@use "../layouts/aside";
+@use "../layouts/nav";
+
+/* 
+  Page Content
+*/
+
+.page-content-wrapper {
+  @media (min-width: 768px) {
+    grid-template-columns: 2fr 1fr;
+  }
+}
+
+// [1] Statistics
+#statistics {
+  height: fit-content;
+
+  .statistic {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid var(--light-gray);
+    &__icon {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+      &.blue {
+        background-color: rgba(blue, 20%);
+      }
+      &.green {
+        background-color: rgba(green, 20%);
+      }
+      &.red {
+        background-color: rgba(red, 20%);
+      }
+      &.orange {
+        background-color: rgba(orange, 20%);
+      }
+    }
+  }
+
+  .upload {
+    cursor: pointer;
+    padding: 10px 15px;
+    justify-self: center;
+    &:hover :first-child {
+      animation: up 0.8s infinite;
+    }
+
+    @keyframes up {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+  }
+}
+
+// [2] Files
+#files {
+  gap: inherit;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  @media (min-width: 768px) {
+    order: -1;
+  }
+
+  .file {
+    gap: 15px;
+    padding: 10px;
+    border-radius: 6px;
+
+    &__download {
+      top: 10px;
+      left: 10px;
+      cursor: pointer;
+      will-change: color;
+      transition: color, 0.3s;
+      &:hover {
+        color: var(--blue) !important;
+      }
+    }
+
+    &__icon {
+      margin-top: 15px;
+      margin-inline: auto;
+    }
+
+    &__foot {
+      padding-top: 10px;
+      border-top: 1px solid var(--light-gray);
+    }
+  }
+}

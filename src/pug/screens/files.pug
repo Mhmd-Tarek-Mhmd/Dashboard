@@ -1,0 +1,61 @@
+include ../components/pageTemplate
+
+//- Helpers
+mixin statistic(icon, color, title, subtitle)
+  .statistic.between-flex
+    .flex.align-center
+      i(aria-hidden="true" class=`statistic__icon ${color} | ${icon} fa-lg center-flex cl-${color}`)
+      +subHeading(title, subtitle+" files", 3, "fs-xs")
+    span.fs-xs.cl-gray 0.0GB
+
+mixin file(file)
+  article.file.rect.relative
+    button.file__download.cl-gray.absolute(aria-label="Download") #[i(aria-hidden="true" class="fa-solid fa-download absolute")]
+    img(aria-hidden="true" class="file__icon" src=`assets/images/icons/${file}.svg` alt="" width="64" height="64")
+    h3.file__name.fs-sm.text-center my-#{file}.png
+    span.file__uploader.fs-xs.cl-gray Uploader Name
+    .file__foot.cl-gray.fs-xs.between-flex
+      span 00/00/0000
+      span 00MB
+
+//- Page
++pageTemplate("Files")
+  //- [1] Statistics
+  aside(id="statistics" class="rect")
+    h3.heading Files Statistics
+    +statistic("fa-regular fa-file-pdf", "blue", "PDF", 130)
+    +statistic("fa-regular fa-images", "green", "Images", 115)
+    +statistic("fa-regular fa-file-word", "red", "Word", 110)
+    +statistic("fa-solid fa-file-csv", "orange", "CSV", 119)
+    button.upload.btn #[i(aria-hidden="true" class="fa-solid fa-angles-up")] Upload
+
+  //- [2] Files
+  #files(role="region" class="grid")
+    +file("pdf")
+    +file("avi")
+    +file("eps")
+    +file("psd")
+    +file("dll")
+    +file("png")
+    +file("sql")
+    +file("dll")
+    +file("eps")
+    +file("txt")
+    +file("zip")
+    +file("avi")
+    +file("psd")
+    +file("png")
+    +file("zip")
+    +file("pdf")
+    +file("sql")
+    +file("txt")
+    +file("pdf")
+    +file("zip")
+    +file("avi")
+    +file("psd")
+    +file("png")
+    +file("sql")
+    +file("zip")
+    +file("txt")
+
+
