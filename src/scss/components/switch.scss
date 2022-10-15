@@ -26,9 +26,29 @@
     background-color: var(--blue);
     :only-child {
       color: var(--blue);
-      transform: translateX(42px);
+      transform: translateX(44px);
       &::before {
         content: "\f00c";
+      }
+    }
+  }
+
+  @media (max-width: 400px) {
+    width: 40px;
+    height: 28px;
+
+    :only-child {
+      width: 14px;
+      height: 14px;
+      &::before {
+        display: none;
+      }
+    }
+
+    &[aria-checked="true"] {
+      justify-content: flex-end;
+      :only-child {
+        transform: translateX(0);
       }
     }
   }
