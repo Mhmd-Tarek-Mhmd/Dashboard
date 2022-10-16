@@ -1,0 +1,35 @@
+include ../components/pageTemplate
+
+//- Helpers
+mixin advantage(advantage, isEnabled)
+  .advantage.row
+    .advantage__wrapper.flex
+      i(aria-label=`${isEnabled ? "Enable" : "Disable"}` class=`fa-solid fa-fw fa-${isEnabled ? "check cl-green" : "xmark cl-red"}`)
+      span=advantage
+    button.advantage__info(title=advantage) #[i(aria-hidden="true" class="fa-solid fa-circle-info cl-gray")]
+
+mixin plan(name, price)
+  - const advantages = ["Access all text lessons", "Access all Videos Lessons", "Appear on Leaderboard", "Browse content without ads", "Access all assignments", "Get daily prizes", "Earn certificate", "1GB hosting", "Access to badge system"];
+  - const cl = name === "Free" ? "green" : "blue";
+  - const color = name === "Premium" ? "orange" : cl;
+
+  article.plan.rect(style=`--cl: var(--${color})`)
+    div(class=`plan__top | text-center cl-white bg-${color}`)
+      h3.fs-xl=name
+      p.price #[sup #[small $]]#[span=price]
+    .plan__advantages
+      each advantage, i in advantages
+        case name
+          when "Free"
+            +advantage(advantage, i < 3 ? true : false)
+          when "Basic"
+            +advantage(advantage, i < 7 ? true : false)
+          default
+            +advantage(advantage, true)
+    button(class=`plan__cta | btn fs-md bg-${color}`) Join
+
+//- Page
++pageTemplate("Plans")
+  +plan("Free", "0.00")
+  +plan("Basic", "7.99")
+  +plan("Premium", "19.99")
